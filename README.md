@@ -1,2 +1,2 @@
 # SmartCamera
-Surveillance camera with a Raspberry Pi
+Smart Detection Surveillance camera with a Raspberry Pi
