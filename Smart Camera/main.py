@@ -18,8 +18,25 @@ app.config['BASIC_AUTH_PASSWORD'] = 'pass'
 app.config['BASIC_AUTH_FORCE'] = True
 basic_auth = BasicAuth(app)
 
+# Track the last email sent timestamp
+last_sent = 0
+def check_for_objects():
+    """Continuously checks for objects and sends an email alert if one is detected."""
+    global last_sent
+    confidence = 70
+    suppression = 60
+    while True:
+         try:
+            # Capture frame and check for objects
+            frame, found_obj = video_camera.getObjects(thres =confidence/100,nms = suppression/100)
+            if found_obj and (time.time() - last_sent) > email_update_interval:
+                 last_sent = time.time()
+                 sendEmail(frame)  # Sends the frame image via email
 
-
+         except Exception as e:
+             print("Error :", e)
+             break
+    cv2.destroyAllWindows()
 
 @app.route('/')
 @basic_auth.required
@@ -37,6 +54,19 @@ def gen(camera):
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n\r\n')
 
+@app.route('/video_feed')
+def video_feed():
+    """Route to stream the video feed."""
+    return Response(gen(video_camera),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
 if __name__ == '__main__':
-app.run(host='0.0.0.0', debug=False)
+    # Start the object detection thread
+    t = threading.Thread(target=check_for_objects, args=())
+    t.daemon = True
+    t.start()
+    # Run the Flask app
+    app.run(host='0.0.0.0', debug=False)
+
+
 
