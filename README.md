@@ -10,7 +10,7 @@ https://github.com/opencv/opencv/wiki/TensorFlow-Object-Detection-API
 Το μοντέλο χρησιμοποιεί το σύνολο δεδομένων COCO για εκπαίδευση.
 https://cocodataset.org/#overview
 
-Δυνατότητες κάμερας
+Δυνατότητες εφαρμογής:
 
 1.Live streaming
 
