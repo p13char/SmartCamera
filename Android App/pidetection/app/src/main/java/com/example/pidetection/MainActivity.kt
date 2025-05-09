@@ -16,8 +16,8 @@ import java.net.URL
 class MainActivity : AppCompatActivity() {
 
     private val bucketName = "picameradetection"
-    private val accessKey = "AKIAQWHCP7VK4AAKD2F4"
-    private val secretKey = "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"
+    private val accessKey = "*****"
+    private val secretKey = "*****"
     private val region = "eu-north"
     private val videoFileName = "detection.mp4" // S3 object key
     private var lastModified: Long = 0 // Track the last modification time
