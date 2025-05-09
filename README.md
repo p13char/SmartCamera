@@ -16,7 +16,7 @@
 - Raspberry Pi
 - Python
 - AWS (S3)
-- Android (για mobile εφαρμογή)
+- Android (Kotlin σε Android Studio)
 
 ## 🎛️ Δυνατότητες
 
