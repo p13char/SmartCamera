@@ -2,8 +2,8 @@ import boto3
 from botocore.exceptions import NoCredentialsError
 
 # AWS credentials and bucket name
-AWS_ACCESS_KEY = 'AKIAQWHCP7VK4AAKD2F4'
-AWS_SECRET_KEY = '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'
+AWS_ACCESS_KEY = ''
+AWS_SECRET_KEY = ''
 BUCKET_NAME = 'picameradetection'
 
 def upload_to_s3(file_path, bucket_name=BUCKET_NAME, object_name=None):
